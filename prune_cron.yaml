@@ -1,0 +1,7 @@
+---
+- name: "Run Docker System Prune --volumes"
+  hosts: "{{ server_group }}"
+  become: true
+  become_user: root
+  roles:
+    - prune

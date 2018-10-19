@@ -1,0 +1,38 @@
+[local]
+localhost ansible_connection=local
+
+[dcos]
+mme-slave-5 ansible_host=10.4.0.26
+mme-slave-0 ansible_host=10.4.0.79
+mme-slave-4 ansible_host=10.4.0.72
+mme-public-0 ansible_host=10.4.0.8
+mme-slave-1 ansible_host=10.4.0.11
+mme-public-1 ansible_host=10.4.0.39
+mme-slave-3 ansible_host=10.4.0.58
+mme-slave-2 ansible_host=10.4.0.59
+mme-master-2 ansible_host=10.4.0.6
+mme-master-1 ansible_host=10.4.0.27
+mme-master-0 ansible_host=10.4.0.44
+
+[dcos_slave]
+mme-slave-5 ansible_host=10.4.0.26
+mme-slave-0 ansible_host=10.4.0.79
+mme-slave-4 ansible_host=10.4.0.72
+mme-public-0 ansible_host=10.4.0.8
+mme-slave-1 ansible_host=10.4.0.11
+mme-public-1 ansible_host=10.4.0.39
+mme-slave-3 ansible_host=10.4.0.58
+mme-slave-2 ansible_host=10.4.0.59
+
+[swarm]
+swarm-worker-2 ansible_host=10.4.0.51
+swarm-manager-4 ansible_host=10.4.0.77
+swarm-worker-1 ansible_host=10.4.0.84
+swarm-worker-0 ansible_host=10.4.0.54
+swarm-manager-2 ansible_host=10.4.0.81
+swarm-manager-0 ansible_host=10.4.0.46
+swarm-dtr-1 ansible_host=10.4.0.5
+swarm-dtr-0 ansible_host=10.4.0.40
+swarm-manager-1 ansible_host=10.4.0.38
+swarm-manager-3 ansible_host=10.4.0.31
+swarm-dtr-2 ansible_host=10.4.0.36

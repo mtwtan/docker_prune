@@ -1,0 +1,43 @@
+- name: "Set Fact to host_index"
+  set_fact:
+    host_index: ansible_play_hosts
+
+- name: "Check fact - host_index - odd"
+  debug:
+    var: ansible_play_hosts.index(inventory_hostname)
+  when: ansible_play_hosts.index(inventory_hostname) % 2 != 0
+
+- name: "Set hour - odd"
+  debug:
+    var: ( ( ansible_play_hosts.index(inventory_hostname) - 1 ) / 2 ) | int
+  when: ansible_play_hosts.index(inventory_hostname) % 2 != 0
+
+- name: "Check fact - host_index - even"
+  debug:
+    var: ansible_play_hosts.index(inventory_hostname)
+  when: ansible_play_hosts.index(inventory_hostname) % 2 == 0
+
+- name: "Set hour - even"
+  debug:
+    var: ( ( ansible_play_hosts.index(inventory_hostname) / 2 ) ) | int
+  when: ansible_play_hosts.index(inventory_hostname) % 2 == 0
+
+- name: "Add cron job to {{ inventory_hostname }} - Odd numbered index"
+  cron:
+    name: "Docker Volume Prune"
+    weekday: 6
+    hour: "{{ ( ( ansible_play_hosts.index(inventory_hostname) - 1 ) / 2 ) | int }}"
+    minute: 0
+    user: root
+    job: "docker system prune --volumes --force"
+  when: ansible_play_hosts.index(inventory_hostname) % 2 != 0
+
+- name: "Add cron job to {{ inventory_hostname }} - Even numbered index"
+  cron:
+    name: "Docker Volume Prune"
+    weekday: 7
+    hour: "{{ ( ( ansible_play_hosts.index(inventory_hostname) - 1 ) / 2 ) | int }}"
+    minute: 0
+    user: root
+    job: "docker system prune --volumes --force"
+  when: ansible_play_hosts.index(inventory_hostname) % 2 == 0
